@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b1020">
+<title>Void Core — Community</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:#070a14;
+    color:#fff;
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================
+   BACKGROUND
+========================= */
+
+.background{
+    position:fixed;
+    inset:0;
+    z-index:-10;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 15% 15%,rgba(91,119,255,.20),transparent 28%),
+        radial-gradient(circle at 85% 20%,rgba(174,82,255,.18),transparent 30%),
+        radial-gradient(circle at 55% 85%,rgba(55,165,255,.13),transparent 30%),
+        #070a14;
+}
+
+.orb{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(70px);
+    opacity:.65;
+    animation:float 14s ease-in-out infinite alternate;
+}
+
+.orb.one{
+    width:420px;
+    height:420px;
+    left:-120px;
+    top:120px;
+    background:#385cff;
+}
+
+.orb.two{
+    width:360px;
+    height:360px;
+    right:-90px;
+    top:80px;
+    background:#a84dff;
+    animation-delay:-4s;
+}
+
+.orb.three{
+    width:500px;
+    height:500px;
+    left:40%;
+    bottom:-300px;
+    background:#167dff;
+    animation-delay:-8s;
+}
+
+@keyframes float{
+    from{
+        transform:translate3d(0,0,0) scale(1);
+    }
+    to{
+        transform:translate3d(45px,-30px,0) scale(1.08);
+    }
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
+.nav{
+    position:fixed;
+    top:20px;
+    left:50%;
+    transform:translateX(-50%);
+    width:min(1120px,calc(100% - 32px));
+    height:68px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 10px 0 22px;
+
+    background:rgba(255,255,255,.075);
+    border:1px solid rgba(255,255,255,.14);
+    backdrop-filter:blur(24px) saturate(150%);
+    -webkit-backdrop-filter:blur(24px) saturate(150%);
+    border-radius:24px;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.13),
+        0 20px 60px rgba(0,0,0,.20);
+
+    z-index:100;
+}
+
+.brand{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    font-size:15px;
+    font-weight:700;
+    letter-spacing:-.02em;
+}
+
+.brand-mark{
+    width:34px;
+    height:34px;
+    border-radius:11px;
+
+    background:
+        linear-gradient(135deg,
+        rgba(255,255,255,.8),
+        rgba(255,255,255,.08));
+
+    border:1px solid rgba(255,255,255,.3);
+
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.5),
+        0 0 25px rgba(100,130,255,.18);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:5px;
+}
+
+.nav-links a{
+    color:rgba(255,255,255,.65);
+    text-decoration:none;
+    font-size:13px;
+    padding:11px 15px;
+    border-radius:14px;
+    transition:.25s ease;
+}
+
+.nav-links a:hover{
+    color:#fff;
+    background:rgba(255,255,255,.09);
+}
+
+.nav-cta{
+    color:#fff !important;
+    background:rgba(255,255,255,.12);
+    border:1px solid rgba(255,255,255,.13);
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    width:min(1220px,100%);
+    margin:auto;
+    padding:150px 30px 80px;
+    position:relative;
+
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    width:65%;
+    position:relative;
+    z-index:5;
+}
+
+.eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:9px;
+    padding:8px 13px;
+    border-radius:100px;
+
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.12);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+
+    color:rgba(255,255,255,.7);
+    font-size:12px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    margin-bottom:30px;
+}
+
+.eyebrow-dot{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:#9cb5ff;
+    box-shadow:0 0 14px #7190ff;
+}
+
+.hero h1{
+    font-size:clamp(70px,11vw,155px);
+    line-height:.82;
+    letter-spacing:-.085em;
+    font-weight:750;
+    max-width:900px;
+}
+
+.hero h1 span{
+    display:block;
+}
+
+.hero h1 .soft{
+    color:rgba(255,255,255,.32);
+}
+
+.hero-description{
+    margin-top:38px;
+    max-width:500px;
+    color:rgba(255,255,255,.58);
+    font-size:16px;
+    line-height:1.7;
+}
+
+.hero-actions{
+    display:flex;
+    gap:12px;
+    margin-top:32px;
+}
+
+.button{
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:17px;
+    padding:14px 20px;
+    text-decoration:none;
+    color:#fff;
+    font-size:13px;
+    transition:.3s ease;
+    background:rgba(255,255,255,.07);
+    backdrop-filter:blur(18px);
+    -webkit-backdrop-filter:blur(18px);
+}
+
+.button:hover{
+    transform:translateY(-3px);
+    background:rgba(255,255,255,.13);
+    border-color:rgba(255,255,255,.25);
+}
+
+.button.primary{
+    background:rgba(255,255,255,.9);
+    color:#090c17;
+    border-color:rgba(255,255,255,.8);
+}
+
+/* =========================
+   GLASS SHAPE
+========================= */
+
+.hero-art{
+    position:absolute;
+    right:-50px;
+    top:50%;
+    transform:translateY(-50%);
+    width:490px;
+    height:570px;
+}
+
+.glass-orb{
+    position:absolute;
+    width:390px;
+    height:390px;
+    border-radius:48% 52% 60% 40%;
+    right:30px;
+    top:70px;
+
+    background:
+        radial-gradient(circle at 28% 20%,
+        rgba(255,255,255,.48),
+        transparent 16%),
+
+        linear-gradient(135deg,
+        rgba(142,178,255,.22),
+        rgba(119,80,255,.16),
+        rgba(255,255,255,.045));
+
+    border:1px solid rgba(255,255,255,.22);
+
+    backdrop-filter:blur(28px) saturate(160%);
+    -webkit-backdrop-filter:blur(28px) saturate(160%);
+
+    box-shadow:
+        inset 18px 18px 50px rgba(255,255,255,.08),
+        inset -25px -25px 55px rgba(0,0,0,.16),
+        0 30px 100px rgba(65,87,255,.2);
+
+    transform:rotate(-17deg);
+    animation:orbFloat 9s ease-in-out infinite alternate;
+}
+
+.glass-orb::before{
+    content:"";
+    position:absolute;
+    width:150px;
+    height:150px;
+    border-radius:50%;
+    top:35px;
+    left:55px;
+
+    background:rgba(255,255,255,.11);
+    filter:blur(8px);
+}
+
+.glass-orb::after{
+    content:"";
+    position:absolute;
+    width:280px;
+    height:100px;
+    border-radius:50%;
+    bottom:30px;
+    left:40px;
+
+    background:rgba(70,116,255,.17);
+    filter:blur(35px);
+}
+
+@keyframes orbFloat{
+    from{
+        transform:rotate(-17deg) translateY(0);
+    }
+    to{
+        transform:rotate(-11deg) translateY(-22px);
+    }
+}
+
+.glass-card{
+    position:absolute;
+    left:15px;
+    bottom:60px;
+    width:220px;
+    height:130px;
+
+    padding:20px;
+
+    border-radius:25px;
+    background:rgba(255,255,255,.075);
+    border:1px solid rgba(255,255,255,.17);
+
+    backdrop-filter:blur(25px);
+    -webkit-backdrop-filter:blur(25px);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.14),
+        0 30px 80px rgba(0,0,0,.22);
+
+    transform:rotate(8deg);
+}
+
+.glass-card small{
+    color:rgba(255,255,255,.42);
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:.12em;
+}
+
+.glass-card strong{
+    display:block;
+    margin-top:12px;
+    font-size:24px;
+    letter-spacing:-.04em;
+}
+
+.glass-card p{
+    margin-top:4px;
+    font-size:11px;
+    color:rgba(255,255,255,.5);
+}
+
+/* =========================
+   FLOATING LABELS
+========================= */
+
+.floating-label{
+    position:absolute;
+    padding:12px 16px;
+    border-radius:18px;
+
+    background:rgba(255,255,255,.065);
+    border:1px solid rgba(255,255,255,.13);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    color:rgba(255,255,255,.65);
+    font-size:11px;
+
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+}
+
+.label-one{
+    top:50px;
+    right:30px;
+    transform:rotate(7deg);
+}
+
+.label-two{
+    right:-10px;
+    bottom:100px;
+    transform:rotate(-8deg);
+}
+
+/* =========================
+   SECTION
+========================= */
+
+.section{
+    width:min(1220px,100%);
+    margin:auto;
+    padding:120px 30px;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:30px;
+    margin-bottom:40px;
+}
+
+.section-title{
+    font-size:clamp(42px,6vw,76px);
+    line-height:.9;
+    letter-spacing:-.07em;
+}
+
+.section-title span{
+    color:rgba(255,255,255,.3);
+}
+
+.section-text{
+    max-width:360px;
+    color:rgba(255,255,255,.48);
+    font-size:14px;
+    line-height:1.7;
+}
+
+/* =========================
+   GLASS GRID
+========================= */
+
+.glass-grid{
+    display:grid;
+    grid-template-columns:1.25fr .75fr;
+    gap:16px;
+}
+
+.panel{
+    min-height:300px;
+    border-radius:32px;
+    padding:30px;
+
+    background:rgba(255,255,255,.055);
+    border:1px solid rgba(255,255,255,.12);
+
+    backdrop-filter:blur(28px) saturate(140%);
+    -webkit-backdrop-filter:blur(28px) saturate(140%);
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.08),
+        0 25px 80px rgba(0,0,0,.14);
+
+    position:relative;
+    overflow:hidden;
+
+    transition:.35s ease;
+}
+
+.panel:hover{
+    transform:translateY(-5px);
+    background:rgba(255,255,255,.075);
+    border-color:rgba(255,255,255,.18);
+}
+
+.panel.large{
+    min-height:430px;
+}
+
+.panel::after{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    border-radius:50%;
+    right:-100px;
+    bottom:-120px;
+
+    background:rgba(89,120,255,.18);
+    filter:blur(50px);
+}
+
+.panel-number{
+    color:rgba(255,255,255,.3);
+    font-size:12px;
+}
+
+.panel h3{
+    position:absolute;
+    left:30px;
+    bottom:30px;
+
+    font-size:clamp(35px,4vw,58px);
+    letter-spacing:-.065em;
+    font-weight:650;
+}
+
+.panel p{
+    margin-top:18px;
+    max-width:300px;
+    color:rgba(255,255,255,.45);
+    font-size:13px;
+    line-height:1.6;
+}
+
+.status{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:20px;
+    color:rgba(255,255,255,.55);
+    font-size:12px;
+}
+
+.status-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:#91b0ff;
+    box-shadow:0 0 15px rgba(100,140,255,.9);
+}
+
+/* =========================
+   COMMUNITY
+========================= */
+
+.community{
+    position:relative;
+    min-height:600px;
+    display:flex;
+    align-items:center;
+}
+
+.community-card{
+    width:100%;
+    min-height:500px;
+
+    border-radius:42px;
+    padding:70px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.10),
+            rgba(255,255,255,.035)
+        );
+
+    border:1px solid rgba(255,255,255,.15);
+
+    backdrop-filter:blur(30px) saturate(150%);
+    -webkit-backdrop-filter:blur(30px) saturate(150%);
+
+    position:relative;
+    overflow:hidden;
+
+    box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.13),
+        0 40px 120px rgba(0,0,0,.25);
+}
+
+.community-card::before{
+    content:"";
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    right:-180px;
+    top:-180px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(118,140,255,.3),
+            rgba(118,140,255,.02) 65%,
+            transparent 70%
+        );
+
+    filter:blur(10px);
+}
+
+.community-card h2{
+    position:relative;
+    z-index:2;
+    font-size:clamp(52px,8vw,105px);
+    line-height:.86;
+    letter-spacing:-.08em;
+    max-width:760px;
+}
+
+.community-card h2 span{
+    color:rgba(255,255,255,.3);
+}
+
+.community-card p{
+    position:relative;
+    z-index:2;
+    max-width:470px;
+    margin-top:35px;
+
+    color:rgba(255,255,255,.5);
+    font-size:15px;
+    line-height:1.7;
+}
+
+.community-card .button{
+    position:relative;
+    z-index:2;
+    display:inline-block;
+    margin-top:28px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    width:min(1220px,100%);
+    margin:auto;
+    padding:50px 30px 35px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    color:rgba(255,255,255,.3);
+    font-size:11px;
+}
+
+.footer-brand{
+    color:rgba(255,255,255,.65);
+    font-weight:650;
+}
+
+.footer-links{
+    display:flex;
+    gap:20px;
+}
+
+.footer-links a{
+    color:inherit;
+    text-decoration:none;
+    transition:.2s;
+}
+
+.footer-links a:hover{
+    color:#fff;
+}
+
+/* =========================
+   REVEAL
+========================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:opacity .8s ease,transform .8s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:900px){
+
+    .nav{
+        height:62px;
+        border-radius:20px;
+    }
+
+    .nav-links{
+        display:none;
+    }
+
+    .hero{
+        padding-top:130px;
+        min-height:900px;
+    }
+
+    .hero-content{
+        width:100%;
+    }
+
+    .hero h1{
+        font-size:clamp(66px,18vw,110px);
+    }
+
+    .hero-art{
+        opacity:.55;
+        right:-170px;
+        top:58%;
+        transform:translateY(-50%) scale(.78);
+    }
+
+    .hero-description{
+        max-width:430px;
+    }
+
+    .glass-grid{
+        grid-template-columns:1fr;
+    }
+
+    .panel.large{
+        min-height:350px;
+    }
+
+    .community-card{
+        padding:45px 30px;
+    }
+
+    footer{
+        flex-direction:column;
+        gap:20px;
+        align-items:flex-start;
+    }
+}
+
+@media(max-width:550px){
+
+    .nav{
+        width:calc(100% - 22px);
+        top:11px;
+        padding-left:15px;
+    }
+
+    .hero{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .section{
+        padding-left:20px;
+        padding-right:20px;
+    }
+
+    .hero h1{
+        font-size:70px;
+    }
+
+    .hero-description{
+        font-size:14px;
+    }
+
+    .hero-actions{
+        flex-wrap:wrap;
+    }
+
+    .hero-art{
+        right:-230px;
+        opacity:.35;
+    }
+
+    .section-head{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .panel{
+        border-radius:25px;
+        padding:24px;
+    }
+
+    .community-card{
+        border-radius:28px;
+        min-height:450px;
+    }
+
+    .community-card h2{
+        font-size:55px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+
+    <a href="index.html" class="brand" style="text-decoration:none;color:white;">
+        <div class="brand-mark"></div>
+        <span>VOID CORE</span>
+    </a>
+
+    <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#community">Community</a>
+        <a href="#projects">Projects</a>
+        <a href="https://youh1vee.github.io/Roleplay/">Roleplay</a>
+        <a href="#community" class="nav-cta">Enter</a>
+    </div>
+
+</nav>
+
+
+<!-- HERO -->
+<main>
+
+<section class="hero">
+
+    <div class="hero-content reveal">
+
+        <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Void Core Community
+        </div>
+
+        <h1>
+            <span>Beyond</span>
+            <span class="soft">the void.</span>
+        </h1>
+
+        <p class="hero-description">
+            Un espacio central para la comunidad de Void Core.
+            Proyectos, información, novedades y todo lo que forma
+            parte del universo.
+        </p>
+
+        <div class="hero-actions">
+
+            <a href="#community" class="button primary">
+                Explore Void Core
+            </a>
+
+            <a href="#about" class="button">
+                Discover more
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-art">
+
+        <div class="floating-label label-one">
+            VOID / 01
+        </div>
+
+        <div class="glass-orb"></div>
+
+        <div class="glass-card">
+            <small>Current space</small>
+            <strong>VOID CORE</strong>
+            <p>Community platform</p>
+        </div>
+
+        <div class="floating-label label-two">
+            COMMUNITY
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ABOUT -->
+<section class="section reveal" id="about">
+
+    <div class="section-head">
+
+        <h2 class="section-title">
+            One core.<br>
+            <span>Many spaces.</span>
+        </h2>
+
+        <p class="section-text">
+            Void Core funciona como el punto central de la comunidad.
+            Desde aquí puedes acceder a sus diferentes proyectos,
+            espacios e información.
+        </p>
+
+    </div>
+
+
+    <div class="glass-grid">
+
+        <article class="panel large">
+
+            <div class="panel-number">01 / CORE</div>
+
+            <h3>Community</h3>
+
+            <p>
+                El centro de la comunidad. Un lugar para descubrir
+                novedades, proyectos y diferentes espacios de Void Core.
+            </p>
+
+        </article>
+
+
+        <article class="panel">
+
+            <div class="panel-number">02 / STATUS</div>
+
+            <div class="status">
+                <span class="status-dot"></span>
+                Void Core active
+            </div>
+
+            <h3>Live</h3>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- PROJECTS -->
+<section class="section reveal" id="projects">
+
+    <div class="section-head">
+
+        <h2 class="section-title">
+            Explore<br>
+            <span>the spaces.</span>
+        </h2>
+
+        <p class="section-text">
+            Diferentes áreas conectadas bajo una misma identidad.
+        </p>
+
+    </div>
+
+
+    <div class="glass-grid">
+
+        <article class="panel">
+
+            <div class="panel-number">03 / PROJECT</div>
+
+            <h3>Projects</h3>
+
+            <p>
+                Proyectos actuales y futuros desarrollados dentro
+                del ecosistema Void Core.
+            </p>
+
+        </article>
+
+
+        <article class="panel">
+
+            <div class="panel-number">04 / INFO</div>
+
+            <h3>Information</h3>
+
+            <p>
+                Información general, recursos y datos importantes
+                de la comunidad.
+            </p>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- COMMUNITY -->
+<section class="section community reveal" id="community">
+
+    <div class="community-card">
+
+        <h2>
+            Enter the<br>
+            <span>community.</span>
+        </h2>
+
+        <p>
+            Todo comienza aquí. Accede al espacio principal de
+            Void Core y descubre lo que hay más allá.
+        </p>
+
+        <a href="#" class="button primary">
+            Enter Void Core
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <div class="footer-brand">
+        VOID CORE
+    </div>
+
+    <div>
+        Community Platform · V.1.0.0
+    </div>
+
+    <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="https://youh1vee.github.io/Roleplay/">Roleplay</a>
+    </div>
+
+</footer>
+
+
+<script>
+
+/* =========================
+   SCROLL REVEAL
+========================= */
+
+const elements = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(
+    entries => {
+
+        entries.forEach(entry => {
+
+            if(entry.isIntersecting){
+
+                entry.target.classList.add("visible");
+
+            }
+
+        });
+
+    },
+    {
+        threshold:.12
+    }
+);
+
+elements.forEach(element => observer.observe(element));
+
+
+/* =========================
+   MOUSE GLASS MOVEMENT
+========================= */
+
+const orb = document.querySelector(".glass-orb");
+
+document.addEventListener("mousemove", e => {
+
+    const x = (e.clientX / window.innerWidth - .5);
+    const y = (e.clientY / window.innerHeight - .5);
+
+    orb.style.marginLeft = `${x * 12}px`;
+    orb.style.marginTop = `${y * 12}px`;
+
+});
+
+
+/* =========================
+   SMOOTH BUTTON FEEDBACK
+========================= */
+
+document.querySelectorAll("a[href^='#']").forEach(link => {
+
+    link.addEventListener("click", e => {
+
+        const target = document.querySelector(link.getAttribute("href"));
+
+        if(target){
+            e.preventDefault();
+
+            target.scrollIntoView({
+                behavior:"smooth"
+            });
+        }
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
