@@ -826,11 +826,18 @@ footer{
     </a>
 
     <div class="nav-links">
+
+        <!-- SECCIONES DEL INDEX -->
         <a href="#about">About</a>
         <a href="#community">Community</a>
         <a href="#projects">Projects</a>
-        <a href="https://youh1vee.github.io/Roleplay/">Roleplay</a>
-        <a href="#community" class="nav-cta">Enter</a>
+
+        <!-- PÁGINA DE ROLEPLAY -->
+        <a href="roleplay.html">Roleplay</a>
+
+        <!-- ENTRADA A LA COMUNIDAD -->
+        <a href="community.html" class="nav-cta">Enter</a>
+
     </div>
 
 </nav>
@@ -861,11 +868,13 @@ footer{
 
         <div class="hero-actions">
 
-            <a href="#community" class="button primary">
+            <!-- EXPLORE VOID CORE -->
+            <a href="explore.html" class="button primary">
                 Explore Void Core
             </a>
 
-            <a href="#about" class="button">
+            <!-- DISCOVER MORE -->
+            <a href="discover.html" class="button">
                 Discover more
             </a>
 
@@ -941,6 +950,12 @@ footer{
                 Void Core active
             </div>
 
+            <!-- LIVE -->
+            <a href="live.html"
+               style="position:absolute;inset:0;z-index:3;"
+               aria-label="Open Live">
+            </a>
+
             <h3>Live</h3>
 
         </article>
@@ -969,9 +984,15 @@ footer{
 
     <div class="glass-grid">
 
+        <!-- PROJECTS -->
         <article class="panel">
 
             <div class="panel-number">03 / PROJECT</div>
+
+            <a href="projects.html"
+               style="position:absolute;inset:0;z-index:3;"
+               aria-label="Open Projects">
+            </a>
 
             <h3>Projects</h3>
 
@@ -983,9 +1004,15 @@ footer{
         </article>
 
 
+        <!-- INFORMATION -->
         <article class="panel">
 
             <div class="panel-number">04 / INFO</div>
+
+            <a href="information.html"
+               style="position:absolute;inset:0;z-index:3;"
+               aria-label="Open Information">
+            </a>
 
             <h3>Information</h3>
 
@@ -1016,7 +1043,8 @@ footer{
             Void Core y descubre lo que hay más allá.
         </p>
 
-        <a href="#" class="button primary">
+        <!-- ENTER VOID CORE -->
+        <a href="roleplay.html" class="button primary">
             Enter Void Core
         </a>
 
@@ -1039,9 +1067,13 @@ footer{
     </div>
 
     <div class="footer-links">
+
         <a href="#about">About</a>
+
         <a href="#projects">Projects</a>
-        <a href="https://youh1vee.github.io/Roleplay/">Roleplay</a>
+
+        <a href="roleplay.html">Roleplay</a>
+
     </div>
 
 </footer>
@@ -1095,7 +1127,7 @@ document.addEventListener("mousemove", e => {
 
 
 /* =========================
-   SMOOTH BUTTON FEEDBACK
+   SMOOTH INTERNAL LINKS
 ========================= */
 
 document.querySelectorAll("a[href^='#']").forEach(link => {
@@ -1105,11 +1137,13 @@ document.querySelectorAll("a[href^='#']").forEach(link => {
         const target = document.querySelector(link.getAttribute("href"));
 
         if(target){
+
             e.preventDefault();
 
             target.scrollIntoView({
                 behavior:"smooth"
             });
+
         }
 
     });
