@@ -1,1156 +1,2177 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0b1020">
-<title>Void Core — Community</title>
-
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    min-height:100vh;
-    background:#070a14;
-    color:#fff;
-    font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-    overflow-x:hidden;
-}
-
-/* =========================
-   BACKGROUND
-========================= */
-
-.background{
-    position:fixed;
-    inset:0;
-    z-index:-10;
-    overflow:hidden;
-    background:
-        radial-gradient(circle at 15% 15%,rgba(91,119,255,.20),transparent 28%),
-        radial-gradient(circle at 85% 20%,rgba(174,82,255,.18),transparent 30%),
-        radial-gradient(circle at 55% 85%,rgba(55,165,255,.13),transparent 30%),
-        #070a14;
-}
-
-.orb{
-    position:absolute;
-    border-radius:50%;
-    filter:blur(70px);
-    opacity:.65;
-    animation:float 14s ease-in-out infinite alternate;
-}
-
-.orb.one{
-    width:420px;
-    height:420px;
-    left:-120px;
-    top:120px;
-    background:#385cff;
-}
-
-.orb.two{
-    width:360px;
-    height:360px;
-    right:-90px;
-    top:80px;
-    background:#a84dff;
-    animation-delay:-4s;
-}
-
-.orb.three{
-    width:500px;
-    height:500px;
-    left:40%;
-    bottom:-300px;
-    background:#167dff;
-    animation-delay:-8s;
-}
-
-@keyframes float{
-    from{
-        transform:translate3d(0,0,0) scale(1);
-    }
-    to{
-        transform:translate3d(45px,-30px,0) scale(1.08);
-    }
-}
-
-/* =========================
-   NAVIGATION
-========================= */
-
-.nav{
-    position:fixed;
-    top:20px;
-    left:50%;
-    transform:translateX(-50%);
-    width:min(1120px,calc(100% - 32px));
-    height:68px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 10px 0 22px;
-
-    background:rgba(255,255,255,.075);
-    border:1px solid rgba(255,255,255,.14);
-    backdrop-filter:blur(24px) saturate(150%);
-    -webkit-backdrop-filter:blur(24px) saturate(150%);
-    border-radius:24px;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.13),
-        0 20px 60px rgba(0,0,0,.20);
-
-    z-index:100;
-}
-
-.brand{
-    display:flex;
-    align-items:center;
-    gap:12px;
-    font-size:15px;
-    font-weight:700;
-    letter-spacing:-.02em;
-}
-
-.brand-mark{
-    width:34px;
-    height:34px;
-    border-radius:11px;
-
-    background:
-        linear-gradient(135deg,
-        rgba(255,255,255,.8),
-        rgba(255,255,255,.08));
-
-    border:1px solid rgba(255,255,255,.3);
-
-    box-shadow:
-        inset 0 1px 1px rgba(255,255,255,.5),
-        0 0 25px rgba(100,130,255,.18);
-}
-
-.nav-links{
-    display:flex;
-    align-items:center;
-    gap:5px;
-}
-
-.nav-links a{
-    color:rgba(255,255,255,.65);
-    text-decoration:none;
-    font-size:13px;
-    padding:11px 15px;
-    border-radius:14px;
-    transition:.25s ease;
-}
-
-.nav-links a:hover{
-    color:#fff;
-    background:rgba(255,255,255,.09);
-}
-
-.nav-cta{
-    color:#fff !important;
-    background:rgba(255,255,255,.12);
-    border:1px solid rgba(255,255,255,.13);
-}
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    min-height:100vh;
-    width:min(1220px,100%);
-    margin:auto;
-    padding:150px 30px 80px;
-    position:relative;
-
-    display:flex;
-    align-items:center;
-}
-
-.hero-content{
-    width:65%;
-    position:relative;
-    z-index:5;
-}
-
-.eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:9px;
-    padding:8px 13px;
-    border-radius:100px;
-
-    background:rgba(255,255,255,.07);
-    border:1px solid rgba(255,255,255,.12);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-
-    color:rgba(255,255,255,.7);
-    font-size:12px;
-    letter-spacing:.08em;
-    text-transform:uppercase;
-    margin-bottom:30px;
-}
-
-.eyebrow-dot{
-    width:6px;
-    height:6px;
-    border-radius:50%;
-    background:#9cb5ff;
-    box-shadow:0 0 14px #7190ff;
-}
-
-.hero h1{
-    font-size:clamp(70px,11vw,155px);
-    line-height:.82;
-    letter-spacing:-.085em;
-    font-weight:750;
-    max-width:900px;
-}
-
-.hero h1 span{
-    display:block;
-}
-
-.hero h1 .soft{
-    color:rgba(255,255,255,.32);
-}
-
-.hero-description{
-    margin-top:38px;
-    max-width:500px;
-    color:rgba(255,255,255,.58);
-    font-size:16px;
-    line-height:1.7;
-}
-
-.hero-actions{
-    display:flex;
-    gap:12px;
-    margin-top:32px;
-}
-
-.button{
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:17px;
-    padding:14px 20px;
-    text-decoration:none;
-    color:#fff;
-    font-size:13px;
-    transition:.3s ease;
-    background:rgba(255,255,255,.07);
-    backdrop-filter:blur(18px);
-    -webkit-backdrop-filter:blur(18px);
-}
-
-.button:hover{
-    transform:translateY(-3px);
-    background:rgba(255,255,255,.13);
-    border-color:rgba(255,255,255,.25);
-}
-
-.button.primary{
-    background:rgba(255,255,255,.9);
-    color:#090c17;
-    border-color:rgba(255,255,255,.8);
-}
-
-/* =========================
-   GLASS SHAPE
-========================= */
-
-.hero-art{
-    position:absolute;
-    right:-50px;
-    top:50%;
-    transform:translateY(-50%);
-    width:490px;
-    height:570px;
-}
-
-.glass-orb{
-    position:absolute;
-    width:390px;
-    height:390px;
-    border-radius:48% 52% 60% 40%;
-    right:30px;
-    top:70px;
-
-    background:
-        radial-gradient(circle at 28% 20%,
-        rgba(255,255,255,.48),
-        transparent 16%),
-
-        linear-gradient(135deg,
-        rgba(142,178,255,.22),
-        rgba(119,80,255,.16),
-        rgba(255,255,255,.045));
-
-    border:1px solid rgba(255,255,255,.22);
-
-    backdrop-filter:blur(28px) saturate(160%);
-    -webkit-backdrop-filter:blur(28px) saturate(160%);
-
-    box-shadow:
-        inset 18px 18px 50px rgba(255,255,255,.08),
-        inset -25px -25px 55px rgba(0,0,0,.16),
-        0 30px 100px rgba(65,87,255,.2);
-
-    transform:rotate(-17deg);
-    animation:orbFloat 9s ease-in-out infinite alternate;
-}
-
-.glass-orb::before{
-    content:"";
-    position:absolute;
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    top:35px;
-    left:55px;
-
-    background:rgba(255,255,255,.11);
-    filter:blur(8px);
-}
-
-.glass-orb::after{
-    content:"";
-    position:absolute;
-    width:280px;
-    height:100px;
-    border-radius:50%;
-    bottom:30px;
-    left:40px;
-
-    background:rgba(70,116,255,.17);
-    filter:blur(35px);
-}
-
-@keyframes orbFloat{
-    from{
-        transform:rotate(-17deg) translateY(0);
-    }
-    to{
-        transform:rotate(-11deg) translateY(-22px);
-    }
-}
-
-.glass-card{
-    position:absolute;
-    left:15px;
-    bottom:60px;
-    width:220px;
-    height:130px;
-
-    padding:20px;
-
-    border-radius:25px;
-    background:rgba(255,255,255,.075);
-    border:1px solid rgba(255,255,255,.17);
-
-    backdrop-filter:blur(25px);
-    -webkit-backdrop-filter:blur(25px);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.14),
-        0 30px 80px rgba(0,0,0,.22);
-
-    transform:rotate(8deg);
-}
-
-.glass-card small{
-    color:rgba(255,255,255,.42);
-    font-size:10px;
-    text-transform:uppercase;
-    letter-spacing:.12em;
-}
-
-.glass-card strong{
-    display:block;
-    margin-top:12px;
-    font-size:24px;
-    letter-spacing:-.04em;
-}
-
-.glass-card p{
-    margin-top:4px;
-    font-size:11px;
-    color:rgba(255,255,255,.5);
-}
-
-/* =========================
-   FLOATING LABELS
-========================= */
-
-.floating-label{
-    position:absolute;
-    padding:12px 16px;
-    border-radius:18px;
-
-    background:rgba(255,255,255,.065);
-    border:1px solid rgba(255,255,255,.13);
-
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-
-    color:rgba(255,255,255,.65);
-    font-size:11px;
-
-    box-shadow:0 20px 50px rgba(0,0,0,.15);
-}
-
-.label-one{
-    top:50px;
-    right:30px;
-    transform:rotate(7deg);
-}
-
-.label-two{
-    right:-10px;
-    bottom:100px;
-    transform:rotate(-8deg);
-}
-
-/* =========================
-   SECTION
-========================= */
-
-.section{
-    width:min(1220px,100%);
-    margin:auto;
-    padding:120px 30px;
-}
-
-.section-head{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    gap:30px;
-    margin-bottom:40px;
-}
-
-.section-title{
-    font-size:clamp(42px,6vw,76px);
-    line-height:.9;
-    letter-spacing:-.07em;
-}
-
-.section-title span{
-    color:rgba(255,255,255,.3);
-}
-
-.section-text{
-    max-width:360px;
-    color:rgba(255,255,255,.48);
-    font-size:14px;
-    line-height:1.7;
-}
-
-/* =========================
-   GLASS GRID
-========================= */
-
-.glass-grid{
-    display:grid;
-    grid-template-columns:1.25fr .75fr;
-    gap:16px;
-}
-
-.panel{
-    min-height:300px;
-    border-radius:32px;
-    padding:30px;
-
-    background:rgba(255,255,255,.055);
-    border:1px solid rgba(255,255,255,.12);
-
-    backdrop-filter:blur(28px) saturate(140%);
-    -webkit-backdrop-filter:blur(28px) saturate(140%);
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.08),
-        0 25px 80px rgba(0,0,0,.14);
-
-    position:relative;
-    overflow:hidden;
-
-    transition:.35s ease;
-}
-
-.panel:hover{
-    transform:translateY(-5px);
-    background:rgba(255,255,255,.075);
-    border-color:rgba(255,255,255,.18);
-}
-
-.panel.large{
-    min-height:430px;
-}
-
-.panel::after{
-    content:"";
-    position:absolute;
-    width:250px;
-    height:250px;
-    border-radius:50%;
-    right:-100px;
-    bottom:-120px;
-
-    background:rgba(89,120,255,.18);
-    filter:blur(50px);
-}
-
-.panel-number{
-    color:rgba(255,255,255,.3);
-    font-size:12px;
-}
-
-.panel h3{
-    position:absolute;
-    left:30px;
-    bottom:30px;
-
-    font-size:clamp(35px,4vw,58px);
-    letter-spacing:-.065em;
-    font-weight:650;
-}
-
-.panel p{
-    margin-top:18px;
-    max-width:300px;
-    color:rgba(255,255,255,.45);
-    font-size:13px;
-    line-height:1.6;
-}
-
-.status{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-top:20px;
-    color:rgba(255,255,255,.55);
-    font-size:12px;
-}
-
-.status-dot{
-    width:7px;
-    height:7px;
-    border-radius:50%;
-    background:#91b0ff;
-    box-shadow:0 0 15px rgba(100,140,255,.9);
-}
-
-/* =========================
-   COMMUNITY
-========================= */
-
-.community{
-    position:relative;
-    min-height:600px;
-    display:flex;
-    align-items:center;
-}
-
-.community-card{
-    width:100%;
-    min-height:500px;
-
-    border-radius:42px;
-    padding:70px;
-
-    background:
-        linear-gradient(
-            135deg,
-            rgba(255,255,255,.10),
-            rgba(255,255,255,.035)
-        );
-
-    border:1px solid rgba(255,255,255,.15);
-
-    backdrop-filter:blur(30px) saturate(150%);
-    -webkit-backdrop-filter:blur(30px) saturate(150%);
-
-    position:relative;
-    overflow:hidden;
-
-    box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.13),
-        0 40px 120px rgba(0,0,0,.25);
-}
-
-.community-card::before{
-    content:"";
-    position:absolute;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    right:-180px;
-    top:-180px;
-
-    background:
-        radial-gradient(
-            circle,
-            rgba(118,140,255,.3),
-            rgba(118,140,255,.02) 65%,
-            transparent 70%
-        );
-
-    filter:blur(10px);
-}
-
-.community-card h2{
-    position:relative;
-    z-index:2;
-    font-size:clamp(52px,8vw,105px);
-    line-height:.86;
-    letter-spacing:-.08em;
-    max-width:760px;
-}
-
-.community-card h2 span{
-    color:rgba(255,255,255,.3);
-}
-
-.community-card p{
-    position:relative;
-    z-index:2;
-    max-width:470px;
-    margin-top:35px;
-
-    color:rgba(255,255,255,.5);
-    font-size:15px;
-    line-height:1.7;
-}
-
-.community-card .button{
-    position:relative;
-    z-index:2;
-    display:inline-block;
-    margin-top:28px;
-}
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    width:min(1220px,100%);
-    margin:auto;
-    padding:50px 30px 35px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    color:rgba(255,255,255,.3);
-    font-size:11px;
-}
-
-.footer-brand{
-    color:rgba(255,255,255,.65);
-    font-weight:650;
-}
-
-.footer-links{
-    display:flex;
-    gap:20px;
-}
-
-.footer-links a{
-    color:inherit;
-    text-decoration:none;
-    transition:.2s;
-}
-
-.footer-links a:hover{
-    color:#fff;
-}
-
-/* =========================
-   REVEAL
-========================= */
-
-.reveal{
-    opacity:0;
-    transform:translateY(25px);
-    transition:opacity .8s ease,transform .8s ease;
-}
-
-.reveal.visible{
-    opacity:1;
-    transform:translateY(0);
-}
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:900px){
-
-    .nav{
-        height:62px;
-        border-radius:20px;
-    }
-
-    .nav-links{
-        display:none;
-    }
-
-    .hero{
-        padding-top:130px;
-        min-height:900px;
-    }
-
-    .hero-content{
-        width:100%;
-    }
-
-    .hero h1{
-        font-size:clamp(66px,18vw,110px);
-    }
-
-    .hero-art{
-        opacity:.55;
-        right:-170px;
-        top:58%;
-        transform:translateY(-50%) scale(.78);
-    }
-
-    .hero-description{
-        max-width:430px;
-    }
-
-    .glass-grid{
-        grid-template-columns:1fr;
-    }
-
-    .panel.large{
-        min-height:350px;
-    }
-
-    .community-card{
-        padding:45px 30px;
-    }
-
-    footer{
-        flex-direction:column;
-        gap:20px;
-        align-items:flex-start;
-    }
-}
-
-@media(max-width:550px){
-
-    .nav{
-        width:calc(100% - 22px);
-        top:11px;
-        padding-left:15px;
-    }
-
-    .hero{
-        padding-left:20px;
-        padding-right:20px;
-    }
-
-    .section{
-        padding-left:20px;
-        padding-right:20px;
-    }
-
-    .hero h1{
-        font-size:70px;
-    }
-
-    .hero-description{
-        font-size:14px;
-    }
-
-    .hero-actions{
-        flex-wrap:wrap;
-    }
-
-    .hero-art{
-        right:-230px;
-        opacity:.35;
-    }
-
-    .section-head{
-        flex-direction:column;
-        align-items:flex-start;
-    }
-
-    .panel{
-        border-radius:25px;
-        padding:24px;
-    }
-
-    .community-card{
-        border-radius:28px;
-        min-height:450px;
-    }
-
-    .community-card h2{
-        font-size:55px;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Void Core — Core Interface</title>
+
+    <meta
+        name="description"
+        content="Void Core — Core Interface"
+    >
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        :root {
+            --bg: #09090d;
+            --bg-secondary: #0d0d13;
+
+            --panel: rgba(21, 21, 30, 0.72);
+            --panel-strong: rgba(25, 25, 36, 0.88);
+
+            --border: rgba(255, 255, 255, 0.075);
+            --border-hover: rgba(178, 130, 255, 0.28);
+
+            --text: #f4f2f8;
+            --text-secondary: #9895a5;
+            --text-muted: #676574;
+
+            --purple: #9d6cff;
+            --purple-light: #b78cff;
+            --blue: #6e8cff;
+
+            --danger: #ff6d91;
+
+            --sidebar-width: 238px;
+
+            --radius: 16px;
+            --radius-small: 11px;
+
+            --transition:
+                180ms cubic-bezier(.2,.8,.2,1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 72% 18%,
+                    rgba(121, 83, 255, 0.09),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 15% 90%,
+                    rgba(71, 102, 255, 0.055),
+                    transparent 28%
+                ),
+                var(--bg);
+
+            color: var(--text);
+            font-family: "Inter", sans-serif;
+
+            overflow-x: hidden;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            border: 0;
+        }
+
+        /* ================================
+           BACKGROUND
+        ================================= */
+
+        .background-glow {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .background-glow::before,
+        .background-glow::after {
+            content: "";
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            border-radius: 50%;
+
+            filter: blur(120px);
+
+            opacity: 0.07;
+        }
+
+        .background-glow::before {
+            background: #7447ff;
+            top: -260px;
+            right: 8%;
+        }
+
+        .background-glow::after {
+            background: #4169ff;
+            bottom: -300px;
+            left: 15%;
+        }
+
+        /* ================================
+           APP
+        ================================= */
+
+        .app {
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* ================================
+           SIDEBAR
+        ================================= */
+
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+
+            position: fixed;
+            left: 0;
+            top: 0;
+
+            display: flex;
+            flex-direction: column;
+
+            padding: 24px 14px 16px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(18, 18, 25, 0.94),
+                    rgba(12, 12, 17, 0.96)
+                );
+
+            border-right: 1px solid var(--border);
+
+            z-index: 50;
+        }
+
+        .brand {
+            padding: 4px 12px 30px;
+        }
+
+        .brand-name {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        .brand-subtitle {
+            margin-top: 4px;
+
+            color: var(--text-muted);
+
+            font-size: 10px;
+            letter-spacing: 0.045em;
+            text-transform: uppercase;
+        }
+
+        .navigation {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            flex: 1;
+        }
+
+        .nav-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-title {
+            padding: 0 12px 8px;
+
+            color: #5d5b67;
+
+            font-size: 9px;
+            font-weight: 600;
+
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .nav-button {
+            width: 100%;
+
+            display: flex;
+            align-items: center;
+
+            padding: 10px 12px;
+
+            background: transparent;
+
+            color: var(--text-secondary);
+
+            border-radius: 9px;
+
+            cursor: pointer;
+
+            font-size: 12px;
+            font-weight: 500;
+
+            text-align: left;
+
+            transition:
+                background var(--transition),
+                color var(--transition),
+                transform var(--transition);
+        }
+
+        .nav-button:hover {
+            background: rgba(255,255,255,0.035);
+            color: var(--text);
+            transform: translateX(2px);
+        }
+
+        .nav-button.active {
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(145, 91, 255, 0.16),
+                    rgba(145, 91, 255, 0.055)
+                );
+
+            color: #cbaaff;
+
+            box-shadow:
+                inset 2px 0 0 rgba(169, 117, 255, 0.9);
+        }
+
+        .sidebar-footer {
+            padding: 12px;
+        }
+
+        .system-mini {
+            padding: 12px;
+
+            background: rgba(255,255,255,0.025);
+
+            border: 1px solid var(--border);
+            border-radius: 11px;
+        }
+
+        .system-mini-label {
+            color: var(--text-muted);
+
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+        }
+
+        .system-mini-status {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            margin-top: 7px;
+
+            font-size: 11px;
+            color: #b8b4c2;
+        }
+
+        .status-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: #8dffbb;
+
+            box-shadow:
+                0 0 9px rgba(141,255,187,0.75);
+        }
+
+        /* ================================
+           MAIN
+        ================================= */
+
+        .main {
+            width: calc(100% - var(--sidebar-width));
+            margin-left: var(--sidebar-width);
+
+            min-height: 100vh;
+        }
+
+        /* ================================
+           TOPBAR
+        ================================= */
+
+        .topbar {
+            height: 66px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 30px;
+
+            border-bottom: 1px solid var(--border);
+
+            background: rgba(9, 9, 13, 0.58);
+
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+
+            position: sticky;
+            top: 0;
+
+            z-index: 40;
+        }
+
+        .topbar-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .page-context {
+            color: var(--text-muted);
+
+            font-size: 11px;
+        }
+
+        .topbar-right {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .search {
+            width: 150px;
+
+            display: flex;
+            align-items: center;
+
+            padding: 8px 11px;
+
+            background: rgba(255,255,255,0.035);
+
+            border: 1px solid var(--border);
+            border-radius: 9px;
+
+            transition:
+                border-color var(--transition),
+                background var(--transition);
+        }
+
+        .search:focus-within {
+            border-color: rgba(157,108,255,0.35);
+            background: rgba(255,255,255,0.045);
+        }
+
+        .search input {
+            width: 100%;
+
+            background: transparent;
+            border: 0;
+            outline: none;
+
+            color: var(--text);
+
+            font-size: 10px;
+        }
+
+        .search input::placeholder {
+            color: #5f5d68;
+        }
+
+        .top-button {
+            width: 31px;
+            height: 31px;
+
+            display: grid;
+            place-items: center;
+
+            background: rgba(255,255,255,0.035);
+
+            border: 1px solid var(--border);
+            border-radius: 9px;
+
+            color: var(--text-secondary);
+
+            cursor: pointer;
+
+            font-size: 10px;
+
+            transition:
+                background var(--transition),
+                border-color var(--transition),
+                color var(--transition);
+        }
+
+        .top-button:hover {
+            background: rgba(157,108,255,0.1);
+            border-color: var(--border-hover);
+            color: var(--text);
+        }
+
+        /* ================================
+           CONTENT
+        ================================= */
+
+        .content {
+            max-width: 1440px;
+
+            margin: 0 auto;
+
+            padding: 32px;
+        }
+
+        .welcome {
+            margin-bottom: 25px;
+        }
+
+        .welcome-label {
+            color: var(--text-muted);
+
+            font-size: 10px;
+            letter-spacing: 0.04em;
+
+            margin-bottom: 7px;
+        }
+
+        .welcome h1 {
+            font-size: clamp(24px, 3vw, 31px);
+
+            font-weight: 600;
+
+            letter-spacing: -0.045em;
+        }
+
+        .welcome p {
+            margin-top: 7px;
+
+            color: var(--text-secondary);
+
+            font-size: 11px;
+        }
+
+        /* ================================
+           DASHBOARD GRID
+        ================================= */
+
+        .dashboard-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(12, minmax(0, 1fr));
+
+            gap: 13px;
+        }
+
+        .card {
+            position: relative;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(31, 30, 41, 0.74),
+                    rgba(17, 17, 24, 0.72)
+                );
+
+            border: 1px solid var(--border);
+
+            border-radius: var(--radius);
+
+            overflow: hidden;
+
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+
+            box-shadow:
+                0 12px 35px rgba(0,0,0,0.13);
+
+            transition:
+                transform 220ms cubic-bezier(.2,.8,.2,1),
+                border-color 220ms ease,
+                box-shadow 220ms ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+
+            border-color: var(--border-hover);
+
+            box-shadow:
+                0 17px 45px rgba(0,0,0,0.2),
+                0 0 30px rgba(126,79,255,0.035);
+        }
+
+        .card-padding {
+            padding: 19px;
+        }
+
+        .card-wide {
+            grid-column: span 8;
+            min-height: 270px;
+        }
+
+        .card-small {
+            grid-column: span 4;
+            min-height: 270px;
+        }
+
+        .card-third {
+            grid-column: span 4;
+            min-height: 150px;
+        }
+
+        .card-half {
+            grid-column: span 6;
+            min-height: 185px;
+        }
+
+        /* ================================
+           CORE CARD
+        ================================= */
+
+        .core-card {
+            background:
+                radial-gradient(
+                    circle at 78% 35%,
+                    rgba(130, 84, 255, 0.17),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    140deg,
+                    rgba(29,28,40,0.88),
+                    rgba(14,14,21,0.88)
+                );
+        }
+
+        .core-card::after {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            right: -70px;
+            bottom: -100px;
+
+            border-radius: 50%;
+
+            background: rgba(118,79,255,0.18);
+
+            filter: blur(65px);
+
+            pointer-events: none;
+        }
+
+        .card-label {
+            color: var(--text-muted);
+
+            font-size: 9px;
+            font-weight: 600;
+
+            letter-spacing: 0.075em;
+            text-transform: uppercase;
+        }
+
+        .core-title {
+            margin-top: 48px;
+
+            font-size: 29px;
+
+            font-weight: 600;
+
+            letter-spacing: -0.045em;
+        }
+
+        .core-description {
+            margin-top: 8px;
+
+            max-width: 390px;
+
+            color: var(--text-secondary);
+
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .core-line {
+            position: absolute;
+
+            left: 19px;
+            right: 19px;
+            bottom: 18px;
+
+            height: 1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(157,108,255,0.65),
+                    rgba(157,108,255,0)
+                );
+        }
+
+        /* ================================
+           STATUS
+        ================================= */
+
+        .status-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .status-main {
+            margin-top: 28px;
+        }
+
+        .status-value {
+            font-size: 26px;
+
+            font-weight: 600;
+
+            letter-spacing: -0.04em;
+        }
+
+        .status-online {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            margin-top: 7px;
+
+            color: #a5dcbc;
+
+            font-size: 10px;
+        }
+
+        .status-bar {
+            width: 100%;
+            height: 4px;
+
+            margin-top: 25px;
+
+            background: rgba(255,255,255,0.045);
+
+            border-radius: 10px;
+
+            overflow: hidden;
+        }
+
+        .status-bar-fill {
+            width: 96%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #7250ff,
+                    #a87aff
+                );
+
+            border-radius: inherit;
+
+            box-shadow:
+                0 0 15px rgba(139,92,255,0.35);
+        }
+
+        /* ================================
+           MODULE CARDS
+        ================================= */
+
+        .module-card {
+            cursor: pointer;
+        }
+
+        .module-number {
+            margin-top: 24px;
+
+            color: var(--text);
+
+            font-size: 22px;
+            font-weight: 600;
+
+            letter-spacing: -0.04em;
+        }
+
+        .module-description {
+            margin-top: 5px;
+
+            color: var(--text-secondary);
+
+            font-size: 10px;
+            line-height: 1.5;
+        }
+
+        .module-link {
+            position: absolute;
+
+            right: 17px;
+            bottom: 17px;
+
+            color: #9e9aa8;
+
+            font-size: 9px;
+
+            transition: color var(--transition);
+        }
+
+        .module-card:hover .module-link {
+            color: var(--purple-light);
+        }
+
+        /* ================================
+           ACTIVITY
+        ================================= */
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+
+            margin-top: 19px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 11px 0;
+
+            border-bottom: 1px solid rgba(255,255,255,0.045);
+        }
+
+        .activity-item:last-child {
+            border-bottom: 0;
+        }
+
+        .activity-name {
+            color: #c6c3ce;
+
+            font-size: 10px;
+        }
+
+        .activity-time {
+            color: #5f5d67;
+
+            font-size: 9px;
+        }
+
+        /* ================================
+           MINI STATS
+        ================================= */
+
+        .stat-value {
+            margin-top: 21px;
+
+            font-size: 27px;
+
+            font-weight: 600;
+
+            letter-spacing: -0.05em;
+        }
+
+        .stat-description {
+            margin-top: 5px;
+
+            color: var(--text-secondary);
+
+            font-size: 9px;
+        }
+
+        /* ================================
+           SETTINGS PANEL
+        ================================= */
+
+        .settings-panel {
+            display: none;
+
+            position: fixed;
+
+            top: 78px;
+            right: 25px;
+
+            width: 310px;
+
+            padding: 18px;
+
+            background:
+                rgba(19,19,27,0.94);
+
+            border: 1px solid rgba(255,255,255,0.09);
+
+            border-radius: 16px;
+
+            backdrop-filter: blur(25px);
+
+            box-shadow:
+                0 25px 70px rgba(0,0,0,0.45);
+
+            z-index: 100;
+        }
+
+        .settings-panel.open {
+            display: block;
+
+            animation:
+                panel-in 180ms ease both;
+        }
+
+        @keyframes panel-in {
+            from {
+                opacity: 0;
+                transform: translateY(-7px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .settings-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 18px;
+        }
+
+        .settings-header h2 {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .settings-section {
+            padding: 13px 0;
+
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .settings-section:first-of-type {
+            border-top: 0;
+        }
+
+        .settings-title {
+            color: var(--text-muted);
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+
+            margin-bottom: 10px;
+        }
+
+        .setting-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 7px 0;
+        }
+
+        .setting-name {
+            color: #c2bfca;
+
+            font-size: 10px;
+        }
+
+        .toggle {
+            width: 31px;
+            height: 17px;
+
+            padding: 2px;
+
+            background: #25242d;
+
+            border-radius: 20px;
+
+            cursor: pointer;
+
+            transition: background var(--transition);
+        }
+
+        .toggle::after {
+            content: "";
+
+            display: block;
+
+            width: 13px;
+            height: 13px;
+
+            border-radius: 50%;
+
+            background: #74717d;
+
+            transition:
+                transform var(--transition),
+                background var(--transition);
+        }
+
+        .toggle.active {
+            background: rgba(143,91,255,0.35);
+        }
+
+        .toggle.active::after {
+            transform: translateX(14px);
+
+            background: #b48cff;
+        }
+
+        .language-options {
+            display: flex;
+            gap: 5px;
+        }
+
+        .language-option {
+            padding: 6px 9px;
+
+            background: rgba(255,255,255,0.025);
+
+            border: 1px solid var(--border);
+            border-radius: 7px;
+
+            color: var(--text-muted);
+
+            font-size: 9px;
+
+            cursor: pointer;
+        }
+
+        .language-option.active {
+            color: #c5a5ff;
+
+            background: rgba(146,91,255,0.1);
+
+            border-color: rgba(157,108,255,0.22);
+        }
+
+        /* ================================
+           TOAST
+        ================================= */
+
+        .toast {
+            position: fixed;
+
+            left: 50%;
+            bottom: 25px;
+
+            transform:
+                translate(-50%, 20px);
+
+            padding: 10px 15px;
+
+            background: rgba(22,21,29,0.94);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 9px;
+
+            color: #c8c5ce;
+
+            font-size: 10px;
+
+            opacity: 0;
+
+            pointer-events: none;
+
+            transition:
+                opacity 180ms ease,
+                transform 180ms ease;
+
+            z-index: 200;
+        }
+
+        .toast.visible {
+            opacity: 1;
+
+            transform:
+                translate(-50%, 0);
+        }
+
+        /* ================================
+           EFFECTS
+        ================================= */
+
+        body.effects-off .background-glow,
+        body.effects-off .card,
+        body.effects-off .topbar {
+            backdrop-filter: none;
+            -webkit-backdrop-filter: none;
+        }
+
+        body.effects-off .background-glow {
+            display: none;
+        }
+
+        /* ================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 900px) {
+
+            :root {
+                --sidebar-width: 190px;
+            }
+
+            .content {
+                padding: 24px;
+            }
+
+            .card-wide {
+                grid-column: span 12;
+            }
+
+            .card-small {
+                grid-column: span 12;
+            }
+
+            .card-third {
+                grid-column: span 6;
+            }
+        }
+
+        @media (max-width: 650px) {
+
+            :root {
+                --sidebar-width: 0px;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+
+                position: relative;
+
+                padding: 16px;
+
+                border-right: 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .brand {
+                padding: 4px 8px 18px;
+            }
+
+            .navigation {
+                gap: 10px;
+            }
+
+            .nav-group {
+                gap: 2px;
+            }
+
+            .nav-title {
+                display: none;
+            }
+
+            .sidebar-footer {
+                display: none;
+            }
+
+            .main {
+                width: 100%;
+                margin-left: 0;
+            }
+
+            .topbar {
+                padding: 0 18px;
+            }
+
+            .search {
+                width: 110px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card-wide,
+            .card-small,
+            .card-third,
+            .card-half {
+                grid-column: span 1;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="background">
-    <div class="orb one"></div>
-    <div class="orb two"></div>
-    <div class="orb three"></div>
-</div>
+    <div class="background-glow"></div>
 
-<!-- NAV -->
-<nav class="nav">
+    <div class="app">
 
-    <a href="index.html" class="brand" style="text-decoration:none;color:white;">
-        <div class="brand-mark"></div>
-        <span>VOID CORE</span>
-    </a>
+        <!-- ================================
+             SIDEBAR
+        ================================= -->
 
-    <div class="nav-links">
+        <aside class="sidebar">
 
-        <!-- SECCIONES DEL INDEX -->
-        <a href="#about">About</a>
-        <a href="#community">Community</a>
-        <a href="#projects">Projects</a>
+            <div class="brand">
+                <div class="brand-name">
+                    VOID CORE
+                </div>
 
-        <!-- PÁGINA DE ROLEPLAY -->
-        <a href="roleplay.html">Roleplay</a>
-
-        <!-- ENTRADA A LA COMUNIDAD -->
-        <a href="community.html" class="nav-cta">Enter</a>
-
-    </div>
-
-</nav>
-
-
-<!-- HERO -->
-<main>
-
-<section class="hero">
-
-    <div class="hero-content reveal">
-
-        <div class="eyebrow">
-            <span class="eyebrow-dot"></span>
-            Void Core Community
-        </div>
-
-        <h1>
-            <span>Beyond</span>
-            <span class="soft">the void.</span>
-        </h1>
-
-        <p class="hero-description">
-            Un espacio central para la comunidad de Void Core.
-            Proyectos, información, novedades y todo lo que forma
-            parte del universo.
-        </p>
-
-        <div class="hero-actions">
-
-            <!-- EXPLORE VOID CORE -->
-            <a href="explore.html" class="button primary">
-                Explore Void Core
-            </a>
-
-            <!-- DISCOVER MORE -->
-            <a href="discover.html" class="button">
-                Discover more
-            </a>
-
-        </div>
-
-    </div>
-
-
-    <div class="hero-art">
-
-        <div class="floating-label label-one">
-            VOID / 01
-        </div>
-
-        <div class="glass-orb"></div>
-
-        <div class="glass-card">
-            <small>Current space</small>
-            <strong>VOID CORE</strong>
-            <p>Community platform</p>
-        </div>
-
-        <div class="floating-label label-two">
-            COMMUNITY
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ABOUT -->
-<section class="section reveal" id="about">
-
-    <div class="section-head">
-
-        <h2 class="section-title">
-            One core.<br>
-            <span>Many spaces.</span>
-        </h2>
-
-        <p class="section-text">
-            Void Core funciona como el punto central de la comunidad.
-            Desde aquí puedes acceder a sus diferentes proyectos,
-            espacios e información.
-        </p>
-
-    </div>
-
-
-    <div class="glass-grid">
-
-        <article class="panel large">
-
-            <div class="panel-number">01 / CORE</div>
-
-            <h3>Community</h3>
-
-            <p>
-                El centro de la comunidad. Un lugar para descubrir
-                novedades, proyectos y diferentes espacios de Void Core.
-            </p>
-
-        </article>
-
-
-        <article class="panel">
-
-            <div class="panel-number">02 / STATUS</div>
-
-            <div class="status">
-                <span class="status-dot"></span>
-                Void Core active
+                <div class="brand-subtitle">
+                    Core Interface
+                </div>
             </div>
 
-            <!-- LIVE -->
-            <a href="live.html"
-               style="position:absolute;inset:0;z-index:3;"
-               aria-label="Open Live">
-            </a>
+            <nav class="navigation">
 
-            <h3>Live</h3>
+                <div class="nav-group">
 
-        </article>
+                    <div class="nav-title">
+                        Main
+                    </div>
+
+                    <button
+                        class="nav-button active"
+                        data-page="home"
+                    >
+                        Home
+                    </button>
+
+                    <button
+                        class="nav-button"
+                        data-page="gallery"
+                    >
+                        Gallery
+                    </button>
+
+                </div>
+
+                <div class="nav-group">
+
+                    <div class="nav-title">
+                        System
+                    </div>
+
+                    <button
+                        class="nav-button"
+                        data-page="effects"
+                    >
+                        Effects
+                    </button>
+
+                    <button
+                        class="nav-button"
+                        data-page="sound"
+                    >
+                        Sound
+                    </button>
+
+                </div>
+
+                <div class="nav-group">
+
+                    <div class="nav-title">
+                        Configuration
+                    </div>
+
+                    <button
+                        class="nav-button"
+                        id="settingsNav"
+                    >
+                        Settings
+                    </button>
+
+                </div>
+
+            </nav>
+
+            <div class="sidebar-footer">
+
+                <div class="system-mini">
+
+                    <div class="system-mini-label">
+                        Core Status
+                    </div>
+
+                    <div class="system-mini-status">
+                        <span class="status-dot"></span>
+                        System Online
+                    </div>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+        <!-- ================================
+             MAIN
+        ================================= -->
+
+        <main class="main">
+
+            <!-- TOPBAR -->
+
+            <header class="topbar">
+
+                <div class="topbar-left">
+
+                    <span class="page-context">
+                        Void Core / Home
+                    </span>
+
+                </div>
+
+                <div class="topbar-right">
+
+                    <label class="search">
+
+                        <input
+                            type="text"
+                            id="searchInput"
+                            placeholder="Search"
+                            autocomplete="off"
+                        >
+
+                    </label>
+
+                    <button
+                        class="top-button"
+                        id="soundButton"
+                        aria-label="Toggle sound"
+                    >
+                        S
+                    </button>
+
+                    <button
+                        class="top-button"
+                        id="settingsButton"
+                        aria-label="Open settings"
+                    >
+                        C
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- CONTENT -->
+
+            <section class="content">
+
+                <div class="welcome">
+
+                    <div class="welcome-label">
+                        VOID CORE SYSTEM
+                    </div>
+
+                    <h1>
+                        Welcome back.
+                    </h1>
+
+                    <p>
+                        Explore the current state of the Void Core interface.
+                    </p>
+
+                </div>
+
+                <!-- DASHBOARD -->
+
+                <div class="dashboard-grid">
+
+                    <!-- CORE -->
+
+                    <article class="card card-wide core-card">
+
+                        <div class="card-padding">
+
+                            <div class="card-label">
+                                Core Interface
+                            </div>
+
+                            <div class="core-title">
+                                Void Core
+                            </div>
+
+                            <div class="core-description">
+                                The central interface for the Void Core
+                                environment. Explore modules, visual systems
+                                and hidden elements.
+                            </div>
+
+                        </div>
+
+                        <div class="core-line"></div>
+
+                    </article>
+
+                    <!-- STATUS -->
+
+                    <article class="card card-small status-card">
+
+                        <div class="card-padding">
+
+                            <div class="card-label">
+                                System Status
+                            </div>
+
+                            <div class="status-main">
+
+                                <div class="status-value">
+                                    Online
+                                </div>
+
+                                <div class="status-online">
+
+                                    <span class="status-dot"></span>
+
+                                    All systems operational
+
+                                </div>
+
+                            </div>
+
+                            <div class="status-bar">
+
+                                <div class="status-bar-fill"></div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <!-- GALLERY -->
+
+                    <article
+                        class="card card-third module-card"
+                        data-module="Gallery"
+                    >
+
+                        <div class="card-padding">
+
+                            <div class="card-label">
+                                Module
+                            </div>
+
+                            <div class="module-number">
+                                Gallery
+                            </div>
+
+                            <div class="module-description">
+                                Visual archive and selected Void Core
+                                material.
+                            </div>
+
+                        </div>
+
+                        <div class="module-link">
+                            Open
+                        </div>
+
+                    </article>
+
+                    <!-- EFFECTS -->
+
+                    <article
+                        class="card card-third module-card"
+                        data-module="Effects"
+                    >
+
+                        <div class="card-padding">
+
+                            <div class="card-label">
+                                Module
+                            </div>
+
+                            <div class="module-number">
+                                Effects
+                            </div>
+
+                            <div class="module-description">
+                                Control the visual atmosphere and interface
+                                effects.
+                            </div>
+
+                        </div>
+
+                        <div class="module-link">
+                            Open
+                        </div>
+
+                    </article>
+
+                    <!-- SOUND -->
+
+                    <article
+                        class="card card-third module-card"
+                        data-module="Sound"
+                    >
+
+                        <div class="card-padding">
+
+                            <div class="card-label">
+                                Module
+                            </div>
+
+                            <div class="module-number">
+                                Sound
+                            </div>
+
+                            <div class="module-description">
+                                Manage interaction sounds and interface audio.
+                            </div>
+
+                        </div>
+
+                        <div class="module-link">
+                            Open
+                        </div>
+
+                    </article>
+
+                    <!-- ACTIVITY -->
+
+                    <article class="card card-half">
+
+                        <div class="card-padding">
+
+                            <div class="card-label">
+                                Recent Activity
+                            </div>
+
+                            <div class="activity-list">
+
+                                <div class="activity-item">
+
+                                    <span class="activity-name">
+                                        Core Interface initialized
+                                    </span>
+
+                                    <span class="activity-time">
+                                        Now
+                                    </span>
+
+                                </div>
+
+                                <div class="activity-item">
+
+                                    <span class="activity-name">
+                                        Visual system loaded
+                                    </span>
+
+                                    <span class="activity-time">
+                                        Now
+                                    </span>
+
+                                </div>
+
+                                <div class="activity-item">
+
+                                    <span class="activity-name">
+                                        Interface ready
+                                    </span>
+
+                                    <span class="activity-time">
+                                        Now
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                    <!-- SECRETS -->
+
+                    <article class="card card-half">
+
+                        <div class="card-padding">
+
+                            <div class="card-label">
+                                Secret Archive
+                            </div>
+
+                            <div class="stat-value">
+                                00
+                            </div>
+
+                            <div class="stat-description">
+                                Discovered secrets
+                            </div>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+        </main>
 
     </div>
 
-</section>
+    <!-- ================================
+         SETTINGS
+    ================================= -->
 
+    <div
+        class="settings-panel"
+        id="settingsPanel"
+    >
 
-<!-- PROJECTS -->
-<section class="section reveal" id="projects">
+        <div class="settings-header">
 
-    <div class="section-head">
+            <h2>
+                Settings
+            </h2>
 
-        <h2 class="section-title">
-            Explore<br>
-            <span>the spaces.</span>
-        </h2>
+            <button
+                class="top-button"
+                id="closeSettings"
+            >
+                X
+            </button>
 
-        <p class="section-text">
-            Diferentes áreas conectadas bajo una misma identidad.
-        </p>
+        </div>
 
-    </div>
+        <div class="settings-section">
 
+            <div class="settings-title">
+                Language
+            </div>
 
-    <div class="glass-grid">
+            <div class="language-options">
 
-        <!-- PROJECTS -->
-        <article class="panel">
+                <button
+                    class="language-option active"
+                    data-language="es"
+                >
+                    Español
+                </button>
 
-            <div class="panel-number">03 / PROJECT</div>
+                <button
+                    class="language-option"
+                    data-language="en"
+                >
+                    English
+                </button>
 
-            <a href="projects.html"
-               style="position:absolute;inset:0;z-index:3;"
-               aria-label="Open Projects">
-            </a>
+            </div>
 
-            <h3>Projects</h3>
+        </div>
 
-            <p>
-                Proyectos actuales y futuros desarrollados dentro
-                del ecosistema Void Core.
-            </p>
+        <div class="settings-section">
 
-        </article>
+            <div class="settings-title">
+                Interface
+            </div>
 
+            <div class="setting-row">
 
-        <!-- INFORMATION -->
-        <article class="panel">
+                <span class="setting-name">
+                    Visual effects
+                </span>
 
-            <div class="panel-number">04 / INFO</div>
+                <button
+                    class="toggle active"
+                    id="effectsToggle"
+                ></button>
 
-            <a href="information.html"
-               style="position:absolute;inset:0;z-index:3;"
-               aria-label="Open Information">
-            </a>
+            </div>
 
-            <h3>Information</h3>
+            <div class="setting-row">
 
-            <p>
-                Información general, recursos y datos importantes
-                de la comunidad.
-            </p>
+                <span class="setting-name">
+                    Interaction sounds
+                </span>
 
-        </article>
+                <button
+                    class="toggle active"
+                    id="soundToggle"
+                ></button>
 
-    </div>
+            </div>
 
-</section>
+        </div>
 
+        <div class="settings-section">
 
-<!-- COMMUNITY -->
-<section class="section community reveal" id="community">
+            <div class="settings-title">
+                Secrets
+            </div>
 
-    <div class="community-card">
+            <div class="setting-row">
 
-        <h2>
-            Enter the<br>
-            <span>community.</span>
-        </h2>
+                <span class="setting-name">
+                    Discovered
+                </span>
 
-        <p>
-            Todo comienza aquí. Accede al espacio principal de
-            Void Core y descubre lo que hay más allá.
-        </p>
+                <span
+                    class="setting-name"
+                    id="secretCount"
+                >
+                    00
+                </span>
 
-        <!-- ENTER VOID CORE -->
-        <a href="roleplay.html" class="button primary">
-            Enter Void Core
-        </a>
+            </div>
 
-    </div>
-
-</section>
-
-</main>
-
-
-<!-- FOOTER -->
-<footer>
-
-    <div class="footer-brand">
-        VOID CORE
-    </div>
-
-    <div>
-        Community Platform · V.1.0.0
-    </div>
-
-    <div class="footer-links">
-
-        <a href="#about">About</a>
-
-        <a href="#projects">Projects</a>
-
-        <a href="roleplay.html">Roleplay</a>
+        </div>
 
     </div>
 
-</footer>
+    <div
+        class="toast"
+        id="toast"
+    >
+        Settings updated.
+    </div>
 
 
-<script>
+    <script>
 
-/* =========================
-   SCROLL REVEAL
-========================= */
+        /* ==========================================
+           VOID CORE — INITIAL SYSTEM
+        ========================================== */
 
-const elements = document.querySelectorAll(".reveal");
+        const state = {
+            sound: localStorage.getItem("void_sound") !== "false",
+            effects: localStorage.getItem("void_effects") !== "false",
+            language: localStorage.getItem("void_language") || "es"
+        };
 
-const observer = new IntersectionObserver(
-    entries => {
 
-        entries.forEach(entry => {
+        /* ==========================================
+           ELEMENTS
+        ========================================== */
 
-            if(entry.isIntersecting){
+        const settingsPanel =
+            document.getElementById("settingsPanel");
 
-                entry.target.classList.add("visible");
+        const toast =
+            document.getElementById("toast");
+
+        const soundToggle =
+            document.getElementById("soundToggle");
+
+        const effectsToggle =
+            document.getElementById("effectsToggle");
+
+        const soundButton =
+            document.getElementById("soundButton");
+
+
+        /* ==========================================
+           AUDIO
+        ========================================== */
+
+        let audioContext = null;
+
+        function playInteractionSound(type = "click") {
+
+            if (!state.sound) return;
+
+            try {
+
+                if (!audioContext) {
+
+                    audioContext =
+                        new (
+                            window.AudioContext ||
+                            window.webkitAudioContext
+                        )();
+
+                }
+
+                const oscillator =
+                    audioContext.createOscillator();
+
+                const gain =
+                    audioContext.createGain();
+
+                oscillator.connect(gain);
+                gain.connect(audioContext.destination);
+
+                oscillator.type = "sine";
+
+                if (type === "hover") {
+
+                    oscillator.frequency.value = 620;
+
+                } else {
+
+                    oscillator.frequency.value = 440;
+
+                }
+
+                gain.gain.setValueAtTime(
+                    0.0001,
+                    audioContext.currentTime
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.035,
+                    audioContext.currentTime + 0.008
+                );
+
+                gain.gain.exponentialRampToValueAtTime(
+                    0.0001,
+                    audioContext.currentTime + 0.09
+                );
+
+                oscillator.start();
+
+                oscillator.stop(
+                    audioContext.currentTime + 0.1
+                );
+
+            } catch (error) {
+
+                console.warn(
+                    "Void Core audio unavailable."
+                );
 
             }
 
-        });
-
-    },
-    {
-        threshold:.12
-    }
-);
-
-elements.forEach(element => observer.observe(element));
+        }
 
 
-/* =========================
-   MOUSE GLASS MOVEMENT
-========================= */
+        /* ==========================================
+           SETTINGS
+        ========================================== */
 
-const orb = document.querySelector(".glass-orb");
+        function updateSettingsUI() {
 
-document.addEventListener("mousemove", e => {
+            soundToggle.classList.toggle(
+                "active",
+                state.sound
+            );
 
-    const x = (e.clientX / window.innerWidth - .5);
-    const y = (e.clientY / window.innerHeight - .5);
+            effectsToggle.classList.toggle(
+                "active",
+                state.effects
+            );
 
-    orb.style.marginLeft = `${x * 12}px`;
-    orb.style.marginTop = `${y * 12}px`;
+            soundButton.style.opacity =
+                state.sound ? "1" : "0.45";
 
-});
-
-
-/* =========================
-   SMOOTH INTERNAL LINKS
-========================= */
-
-document.querySelectorAll("a[href^='#']").forEach(link => {
-
-    link.addEventListener("click", e => {
-
-        const target = document.querySelector(link.getAttribute("href"));
-
-        if(target){
-
-            e.preventDefault();
-
-            target.scrollIntoView({
-                behavior:"smooth"
-            });
+            document.body.classList.toggle(
+                "effects-off",
+                !state.effects
+            );
 
         }
 
-    });
+        updateSettingsUI();
 
-});
 
-</script>
+        function showToast(message) {
+
+            toast.textContent = message;
+
+            toast.classList.add("visible");
+
+            clearTimeout(window.toastTimeout);
+
+            window.toastTimeout =
+                setTimeout(() => {
+
+                    toast.classList.remove(
+                        "visible"
+                    );
+
+                }, 1800);
+
+        }
+
+
+        function openSettings() {
+
+            settingsPanel.classList.add("open");
+
+            playInteractionSound();
+
+        }
+
+
+        function closeSettings() {
+
+            settingsPanel.classList.remove("open");
+
+        }
+
+
+        document
+            .getElementById("settingsButton")
+            .addEventListener(
+                "click",
+                openSettings
+            );
+
+
+        document
+            .getElementById("settingsNav")
+            .addEventListener(
+                "click",
+                openSettings
+            );
+
+
+        document
+            .getElementById("closeSettings")
+            .addEventListener(
+                "click",
+                closeSettings
+            );
+
+
+        soundToggle.addEventListener(
+            "click",
+            () => {
+
+                state.sound = !state.sound;
+
+                localStorage.setItem(
+                    "void_sound",
+                    state.sound
+                );
+
+                updateSettingsUI();
+
+                if (state.sound) {
+                    playInteractionSound();
+                }
+
+                showToast(
+                    state.sound
+                        ? "Interaction sounds enabled."
+                        : "Interaction sounds disabled."
+                );
+
+            }
+        );
+
+
+        effectsToggle.addEventListener(
+            "click",
+            () => {
+
+                state.effects = !state.effects;
+
+                localStorage.setItem(
+                    "void_effects",
+                    state.effects
+                );
+
+                updateSettingsUI();
+
+                playInteractionSound();
+
+                showToast(
+                    state.effects
+                        ? "Visual effects enabled."
+                        : "Visual effects disabled."
+                );
+
+            }
+        );
+
+
+        soundButton.addEventListener(
+            "click",
+            () => {
+
+                state.sound = !state.sound;
+
+                localStorage.setItem(
+                    "void_sound",
+                    state.sound
+                );
+
+                updateSettingsUI();
+
+                if (state.sound) {
+                    playInteractionSound();
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           LANGUAGE
+        ========================================== */
+
+        document
+            .querySelectorAll(".language-option")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        state.language =
+                            button.dataset.language;
+
+                        localStorage.setItem(
+                            "void_language",
+                            state.language
+                        );
+
+                        document
+                            .querySelectorAll(
+                                ".language-option"
+                            )
+                            .forEach(option => {
+
+                                option.classList.toggle(
+                                    "active",
+                                    option.dataset.language ===
+                                    state.language
+                                );
+
+                            });
+
+                        playInteractionSound();
+
+                        showToast(
+                            state.language === "es"
+                                ? "Idioma: Español"
+                                : "Language: English"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* ==========================================
+           NAVIGATION
+        ========================================== */
+
+        document
+            .querySelectorAll(".nav-button")
+            .forEach(button => {
+
+                if (
+                    button.id === "settingsNav"
+                ) return;
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        document
+                            .querySelectorAll(
+                                ".nav-button"
+                            )
+                            .forEach(nav => {
+
+                                nav.classList.remove(
+                                    "active"
+                                );
+
+                            });
+
+                        button.classList.add(
+                            "active"
+                        );
+
+                        playInteractionSound();
+
+                        const page =
+                            button.dataset.page;
+
+                        if (page === "home") {
+
+                            showToast(
+                                "Home selected."
+                            );
+
+                        } else {
+
+                            showToast(
+                                `${button.textContent.trim()} module ready.`
+                            );
+
+                        }
+
+                    }
+                );
+
+            });
+
+
+        /* ==========================================
+           MODULE CARDS
+        ========================================== */
+
+        document
+            .querySelectorAll(".module-card")
+            .forEach(card => {
+
+                card.addEventListener(
+                    "click",
+                    () => {
+
+                        playInteractionSound();
+
+                        showToast(
+                            `${card.dataset.module} module selected.`
+                        );
+
+                    }
+                );
+
+                card.addEventListener(
+                    "mouseenter",
+                    () => {
+
+                        playInteractionSound(
+                            "hover"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* ==========================================
+           SEARCH
+        ========================================== */
+
+        const searchInput =
+            document.getElementById("searchInput");
+
+        searchInput.addEventListener(
+            "keydown",
+            event => {
+
+                if (
+                    event.key.toLowerCase() ===
+                    "enter"
+                ) {
+
+                    const query =
+                        searchInput.value.trim();
+
+                    if (!query) return;
+
+                    playInteractionSound();
+
+                    showToast(
+                        `Searching for "${query}"`
+                    );
+
+                }
+
+            }
+        );
+
+
+        /* ==========================================
+           SECRET SYSTEM — FOUNDATION
+        ========================================== */
+
+        const discoveredSecrets =
+            JSON.parse(
+                localStorage.getItem(
+                    "void_secrets"
+                ) || "[]"
+            );
+
+        document.getElementById(
+            "secretCount"
+        ).textContent =
+            String(
+                discoveredSecrets.length
+            ).padStart(2, "0");
+
+
+        /* ==========================================
+           GLOBAL INTERACTION SOUND
+        ========================================== */
+
+        document
+            .querySelectorAll("button")
+            .forEach(button => {
+
+                button.addEventListener(
+                    "mouseenter",
+                    () => {
+
+                        if (
+                            button.classList.contains(
+                                "module-card"
+                            )
+                        ) return;
+
+                        playInteractionSound(
+                            "hover"
+                        );
+
+                    }
+                );
+
+            });
+
+
+        /* ==========================================
+           CLOSE SETTINGS OUTSIDE
+        ========================================== */
+
+        document.addEventListener(
+            "click",
+            event => {
+
+                if (
+                    !settingsPanel.classList.contains(
+                        "open"
+                    )
+                ) return;
+
+                const clickedInside =
+                    settingsPanel.contains(
+                        event.target
+                    );
+
+                const clickedSettings =
+                    event.target.closest(
+                        "#settingsButton, #settingsNav"
+                    );
+
+                if (
+                    !clickedInside &&
+                    !clickedSettings
+                ) {
+
+                    closeSettings();
+
+                }
+
+            }
+        );
+
+    </script>
 
 </body>
 </html>
